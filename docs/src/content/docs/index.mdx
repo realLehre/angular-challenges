@@ -1,0 +1,76 @@
+---
+title: Welcome to Angular Challenges
+description: Get started by resolving those challenges and becoming a better Angular FrontEnd engineer.
+template: splash
+noCommentSection: true
+hero:
+  tagline: Start now and become an Angular Expert!
+  image:
+    file: ../../assets/angular-challenge.webp
+  actions:
+    - text: Get Started
+      link: /guides/getting-started/
+      icon: right-arrow
+      variant: primary
+    - text: Go to the latest Challenge
+      link: /challenges/forms/41-control-value-accessor/
+      icon: rocket
+    - text: Give a star
+      link: https://github.com/tomalaforge/angular-challenges
+      icon: github
+      variant: secondary
+---
+
+import { Card, CardGrid } from '@astrojs/starlight/components';
+import MyIcon from '../../components/MyIcon.astro';
+
+<CardGrid>
+<Card title="41 Challenges">
+    This repository gathers 41 Challenges related to <b>Angular</b>, <b>Nx</b>, <b>RxJS</b>, <b>Ngrx</b> and <b>Typescript</b>.
+    These challenges resolve around real-life issues or specific features to elevate your skills.
+</Card>
+
+<Card title="Become an OSS Maintainer">
+  One of the goals of this repository is to <b>lower the barrier</b> to entry
+  for Open Source Software (OSS). By engaging with these challenges, you will
+  learn how to start contributing to any other Open Source Project.
+</Card>
+
+<Card title="Learn Alongside Others">
+  Learning and practicing a new framework is always challenging. This set of
+  challenges provides real-world use cases to apply what you've been learning.
+  Anyone can comment or offer assistance.
+  <b>
+    Learning alone is great, but learning alongside others will get you further.
+  </b>
+</Card>
+
+<Card title="Contribute">
+  Do you have an issue, an interesting bug, or an idea? Don't hesitate;{' '}
+  <b>create your own challenges</b> without wasting any time.
+</Card>
+
+<Card title="Prepare Yourself for Interviews">
+  Completing these challenges will prepare you for any technical challenges you
+  may encounter in a frontend role during interviews.
+</Card>
+
+<Card title="Sponsoring">
+    This project is free and aims to remain so for as long as possible. However, everything is accomplished during my free time, including creating challenges and reviewing pull requests (PRs). <b>Sponsorship can support me and contribute to the growth of the project</b>.
+</Card>
+</CardGrid>
+
+---
+
+<div class="article-footer">
+  <a href="https://github.com/sponsors/tomalaforge" alt="Sponsor link">
+    <MyIcon name="fillHeart" size="1.2rem" color="white" />
+    Sponsor the Project
+  </a>
+</div>
+
+<div class="main-page-footer">
+  Created by{' '}
+  <a href="https://github.com/tomalaforge?tab=repositories">Thomas Laforge</a> -
+  Powered by 🌟 <a href="https://starlight.astro.build/">Starlight</a>
+</div>

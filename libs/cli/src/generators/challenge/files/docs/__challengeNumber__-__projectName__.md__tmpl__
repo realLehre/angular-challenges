@@ -1,0 +1,21 @@
+---
+title: <%= difficulty %> <%= title %>
+description: Challenge <%= challengeNumber %> is about ...
+author: <%= author %>
+challengeNumber: <%= challengeNumber %>
+command: <%= appProjectName %>
+sidebar:
+  order: <%= order %>
+  badge: New
+---
+
+:::note
+WIP: The following documentation need to be written.
+:::
+
+## Information
+
+## Statement
+
+## Constraints
+

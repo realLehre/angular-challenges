@@ -1,6 +1,11 @@
-import { NgFor, NgIf } from '@angular/common';
-import { Component, Input } from '@angular/core';
-import { randStudent, randTeacher } from '../../data-access/fake-http.service';
+import { NgFor, NgIf, NgTemplateOutlet } from '@angular/common';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+  TemplateRef,
+} from '@angular/core';
 import { StudentStore } from '../../data-access/student.store';
 import { TeacherStore } from '../../data-access/teacher.store';
 import { CardType } from '../../model/card.model';
@@ -12,21 +17,16 @@ import { ListItemComponent } from '../list-item/list-item.component';
     <div
       class="flex w-fit flex-col gap-3 rounded-md border-2 border-black p-4"
       [class]="customClass">
-      <img
-        *ngIf="type === CardType.TEACHER"
-        src="assets/img/teacher.png"
-        width="200px" />
-      <img
-        *ngIf="type === CardType.STUDENT"
-        src="assets/img/student.webp"
-        width="200px" />
+      <ng-container [ngTemplateOutlet]="cardImage"></ng-container>
 
       <section>
-        <app-list-item
-          *ngFor="let item of list"
-          [name]="item.firstName"
-          [id]="item.id"
-          [type]="type"></app-list-item>
+        @for (item of list; track $index) {
+          <app-list-item
+            [name]="item[cardProp]"
+            [id]="item.id"
+            [type]="type"
+            (deleteItem)="onDeleteItem($event)"></app-list-item>
+        }
       </section>
 
       <button
@@ -37,12 +37,16 @@ import { ListItemComponent } from '../list-item/list-item.component';
     </div>
   `,
   standalone: true,
-  imports: [NgIf, NgFor, ListItemComponent],
+  imports: [NgIf, NgFor, ListItemComponent, NgTemplateOutlet],
 })
 export class CardComponent {
-  @Input() list: any[] | null = null;
+  @Input() list: any[] = [];
   @Input() type!: CardType;
   @Input() customClass = '';
+  @Input() cardImage!: TemplateRef<any>;
+  @Input() cardProp!: string;
+  @Output() addItem = new EventEmitter<CardType>();
+  @Output() deleteItem = new EventEmitter<number>();
 
   CardType = CardType;
 
@@ -52,10 +56,10 @@ export class CardComponent {
   ) {}
 
   addNewItem() {
-    if (this.type === CardType.TEACHER) {
-      this.teacherStore.addOne(randTeacher());
-    } else if (this.type === CardType.STUDENT) {
-      this.studentStore.addOne(randStudent());
-    }
+    this.addItem.emit();
+  }
+
+  onDeleteItem(data: number) {
+    this.deleteItem.emit(data);
   }
 }

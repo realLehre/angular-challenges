@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, signal } from '@angular/core';
 import { randText } from '@ngneat/falso';
-import { TodoModel } from './todo.model';
+import { TodoModel } from '../todo.model';
 
 @Injectable({ providedIn: 'root' })
 export class TodoService {
@@ -38,6 +38,17 @@ export class TodoService {
           (prevTodo) => prevTodo.id == todo.id,
         );
         this.todos()[index] = todoUpdated;
+      });
+  }
+
+  deleteTodo(todo: TodoModel) {
+    this.http
+      .delete(`https://jsonplaceholder.typicode.com/todos/${todo.id}`)
+      .subscribe((todos) => {
+        const newTodos = this.todos().filter((t) => t.id != todo.id);
+        this.todos.set(newTodos);
+        console.log(todos);
+        // this.todos.set(todos)
       });
   }
 }

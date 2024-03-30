@@ -1,8 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { TodoService } from './services/todo.service';
 import { TodoModel } from './todo.model';
-import { TodoService } from './todo.service';
 
 @Component({
   standalone: true,
@@ -12,6 +12,7 @@ import { TodoService } from './todo.service';
     <div *ngFor="let todo of todos()">
       {{ todo.title }}
       <button (click)="update(todo)">Update</button>
+      <button (click)="delete(todo)">Delete</button>
     </div>
   `,
   styles: [],
@@ -31,5 +32,9 @@ export class AppComponent implements OnInit {
 
   update(todo: TodoModel) {
     this.todoService.updateTodo(todo);
+  }
+
+  delete(todo: TodoModel) {
+    this.todoService.deleteTodo(todo);
   }
 }

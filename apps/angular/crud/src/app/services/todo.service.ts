@@ -13,7 +13,6 @@ export class TodoService {
       .get<TodoModel[]>('https://jsonplaceholder.typicode.com/todos')
       .subscribe((todos) => {
         this.todos.set(todos);
-        console.log(todos);
       });
   }
 
@@ -44,11 +43,9 @@ export class TodoService {
   deleteTodo(todo: TodoModel) {
     this.http
       .delete(`https://jsonplaceholder.typicode.com/todos/${todo.id}`)
-      .subscribe((todos) => {
+      .subscribe(() => {
         const newTodos = this.todos().filter((t) => t.id != todo.id);
         this.todos.set(newTodos);
-        console.log(todos);
-        // this.todos.set(todos)
       });
   }
 }

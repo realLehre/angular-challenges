@@ -25,6 +25,7 @@ export class AppComponent implements OnInit {
       .get<any[]>('https://jsonplaceholder.typicode.com/todos')
       .subscribe((todos) => {
         this.todos = todos;
+        console.log(todos);
       });
   }
 
@@ -42,7 +43,7 @@ export class AppComponent implements OnInit {
           headers: {
             'Content-type': 'application/json; charset=UTF-8',
           },
-        }
+        },
       )
       .subscribe((todoUpdated: any) => {
         this.todos[todoUpdated.id - 1] = todoUpdated;

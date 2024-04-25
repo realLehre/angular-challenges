@@ -1,11 +1,11 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
-  name: 'person',
+  name: 'personPipe',
   standalone: true,
 })
 export class PersonPipe implements PipeTransform {
-  transform(value: unknown, ...args: unknown[]): unknown {
-    return null;
+  transform(value: string, index: number): string {
+    return `${value} - ${index}`;
   }
 }

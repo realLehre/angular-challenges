@@ -55,10 +55,10 @@ export class AppComponent implements OnInit {
     this.todoService.updateTodo(todo).subscribe({
       next: (t) => {
         this.loadingSpinnerService.hideSpinner();
-        const index = this.todos.findIndex(
-          (prevTodo) => prevTodo.id == todo.id,
-        );
-        this.todos[index] = t;
+
+        this.todos = this.todos.map((prevTodo) => {
+          return prevTodo.id == t.id ? { ...prevTodo, ...t } : { ...prevTodo };
+        });
       },
       error: () => {
         this.loadingSpinnerService.hideSpinner();
